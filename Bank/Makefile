@@ -1,7 +1,7 @@
 INCLUDE_DIR = include
 
 SRCS= src/account.cpp src/client.cpp src/main.cpp
-OBJS= obj/account.o obj/client.o obj/main.o
+OBJS= obj/account.o obj/client.o obj/main.o obj/bank.o
 
 CXX = g++
 CXX_FLAGS = -I$(INCLUDE_DIR)
@@ -21,6 +21,10 @@ obj/main.o : src/main.cpp include/account.hpp
 obj/client.o : src/client.cpp include/client.hpp include/account.hpp
 	mkdir -p obj
 	$(CXX) $(CXX_FLAGS) -c src/client.cpp -o $@
+
+obj/bank.o : src/bank.cpp include/bank.hpp include/client.hpp
+	mkdir -p obj
+	$(CXX) $(CXX_FLAGS) -c src/bank.cpp -o $@
 
 .PHONY: clean
 clean:

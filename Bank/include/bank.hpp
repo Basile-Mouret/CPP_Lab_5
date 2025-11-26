@@ -10,7 +10,7 @@ class Bank{
         map<unsigned int, Client *> clients;
     public:
         Bank();
-        void insertClient(const Client &client);
+        void insertClient(Client &client);
         friend ostream &operator<<(ostream &os, const Bank &bank);
 
 };
