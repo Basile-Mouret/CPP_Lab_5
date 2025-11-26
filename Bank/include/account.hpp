@@ -16,9 +16,10 @@ class Account{
     public:
         Account(unsigned int id);
         void credit(double amount);
-        virtual double debit(double amount)=0;
-        void print(ostream &o) const;
+        virtual double debit(double amount)=0; // pure virtual method
+        virtual void print(ostream &o) const;
         float operator()();
+        friend ostream &operator<<(ostream &os, const Account &account);
 };
 
 class CurrentAccount : public Account {

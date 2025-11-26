@@ -18,6 +18,11 @@ float Account::operator()(){
     return balance;
 }
 
+ostream &operator<<(ostream &os, const Account &account){
+  account.print(os);
+  return os;
+}
+
 CurrentAccount::CurrentAccount(unsigned int id) : Account(id){}
 
 double CurrentAccount::debit(double amount){

@@ -79,13 +79,11 @@ double Client::debit_savings(double amount){
 ostream& operator<<(ostream &o, const Client &client){
     o<< "\nclient name : " << client.name << "\nclient id : " << client.id << "\nAccounts : \n";
     if (client.current!=NULL){
-        client.current->print(o);
-        o << "\n";
+        o << *client.current << "\n";
     }
     
     if (client.savings!=NULL){
-        client.savings->print(o);
-        o << "\n";
+        o << *client.savings << "\n";
     }
     return o;
 }
