@@ -18,6 +18,7 @@ class Account{
         void credit(double amount);
         virtual double debit(double amount)=0; // pure virtual method
         virtual void print(ostream &o) const;
+        virtual Account *clone() const=0;
         float operator()();
         friend ostream &operator<<(ostream &os, const Account &account);
 };
@@ -27,6 +28,7 @@ class CurrentAccount : public Account {
         CurrentAccount(unsigned int id);
         double debit(double amount);
         void print(ostream &o) const;
+        Account *clone() const;
 };
 
 class SavingsAccount : public Account {
@@ -43,6 +45,7 @@ class BlockedSavingsAccount : public SavingsAccount {
         BlockedSavingsAccount(unsigned int id);
         double debit(double amount);
         void print(ostream &o) const;
+        Account *clone() const;
 };
 
 class UnblockedSavingsAccount : public SavingsAccount {
@@ -50,6 +53,7 @@ class UnblockedSavingsAccount : public SavingsAccount {
         UnblockedSavingsAccount(unsigned int id);
         double debit(double amount);
         void print(ostream &o) const;
+        Account *clone() const;
 };
 
 #endif

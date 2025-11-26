@@ -45,6 +45,10 @@ void CurrentAccount::print(ostream &o)const{
     Account::print(o);
 }
 
+Account *CurrentAccount::clone() const{
+  return new CurrentAccount(*this);
+}
+
 SavingsAccount::SavingsAccount(unsigned int id, unsigned int rate) : Account(id) {
     this->rate=rate;
 }
@@ -70,6 +74,10 @@ void BlockedSavingsAccount::print(ostream &o) const{
 
 double BlockedSavingsAccount::debit(double amount){return -1;}
 
+Account *BlockedSavingsAccount::clone() const{
+  return new BlockedSavingsAccount(*this);
+}
+
 UnblockedSavingsAccount::UnblockedSavingsAccount(unsigned int id):SavingsAccount(id, IRATEUNBLOCKED){}
 
 double UnblockedSavingsAccount::debit(double amount){
@@ -85,4 +93,8 @@ double UnblockedSavingsAccount::debit(double amount){
 void UnblockedSavingsAccount::print(ostream &o) const{
     o << "** Unblocked Savings Account **\n";
     Account::print(o);
+}
+
+Account *UnblockedSavingsAccount::clone() const{
+  return new UnblockedSavingsAccount(*this);
 }

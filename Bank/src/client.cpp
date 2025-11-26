@@ -17,7 +17,7 @@ Client::Client(const Client &client){
     this->max_nb_account = client.max_nb_account;
     this->accounts = new Account *[client.max_nb_account];
     for (int i=0; i<client.current_nb_account; i++) {
-      this->accounts[i] = client.accounts[i];
+      this->accounts[i] = client.accounts[i]->clone();
     }
     this->current_nb_account = client.current_nb_account;
 
@@ -47,8 +47,9 @@ Client &Client::operator=(const Client &client){
     this->accounts = new Account *[client.max_nb_account];
 
     for (int i=0; i<client.current_nb_account; i++){
-      this->accounts[i] = client.accounts[i];
+      this->accounts[i] = client.accounts[i]->clone();
     }
+    this->current_nb_account = client.current_nb_account;
     return (*this);
 }
 
@@ -60,7 +61,7 @@ void Client::createAccount(){
   string choice;
   if (this->current_nb_account<max_nb_account){
     cout << "Creation of accounts for " << this->name << endl;
-    cout << "Creation of a current accout (1), unblocked savings account(2), or blocked savings account(3)?";
+    cout << "Creation of a current accout (1), unblocked savings account(2), or blocked savings account(3)?" << endl;
     cin >> choice;
     if (choice=="1"){
       this->accounts[this->current_nb_account] = new CurrentAccount(current_nb_account);
@@ -87,14 +88,14 @@ void Client::creditAccount(double amount){
     
     cout << *(this->accounts[i]) << endl;
   }
-  cout << "Which one do you want to credit?\naccount : " << endl;
+  cout << "Which one do you want to credit?\naccount : ";
   cin >> choice;
 
-  if (stoi(choice)>=0 && stoi(choice)<this->current_nb_account){
+  if (stoi(choice)>0 && stoi(choice)<=this->current_nb_account){
     this->accounts[stoi(choice)-1]->credit(amount);
   }
   else{
-    cout << "Invalid input, operation cancelled.";
+    cout << "Invalid input, operation cancelled." << endl;
   }
 }
 
@@ -104,14 +105,14 @@ double Client::debitAccount(double amount){
   for (int i=0; i<this->current_nb_account; i++){
     cout << *(this->accounts[i]) << endl;
   }
-  cout << "Which one do you want to debit?\naccount : " << endl;
+  cout << "Which one do you want to debit?\naccount : ";
   cin >> choice;
 
-  if (stoi(choice)>=0 && stoi(choice)<this->current_nb_account ){
+  if (stoi(choice)>0 && stoi(choice)<=this->current_nb_account ){
     return this->accounts[stoi(choice)-1]->debit(amount);
   }
   else{
-    cout << "Invalid input, operation cancelled.";
+    cout << "Invalid input, operation cancelled." << endl;
   }
 
   return 0;

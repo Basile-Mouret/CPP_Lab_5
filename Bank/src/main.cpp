@@ -14,17 +14,23 @@ int main(){
     Client client2("Martha",2,3);
     bank.insertClient(client2);
 
-    Client client3("Fred",3,1);
-    bank.insertClient(client3);
 
     client1.createAccount();
     client1.createAccount();
     client1.creditAccount(1000);
-    //client1.creditAccount(client1.debitAccount(900));
+    client1.creditAccount(client1.debitAccount(900));
 
-    //client2.createAccount();
-    //client2.creditAccount(100);
-    //client1.creditAccount(client2.debitAccount(20));
+    client2.createAccount();
+    client2.creditAccount(100);
+    client1.creditAccount(client2.debitAccount(20));
+
+    Client client3("Fred",3,1);
+    bank.insertClient(client3);
+    client3 = client1;
+
+    Client client4(client2);
+    cout << "client 4\n" << endl;
+    bank.insertClient(client4);
 
     cout << bank << endl;
     return 0;
