@@ -8,21 +8,23 @@ using namespace std;
 
 int main(){
     Bank bank;
-    Client client1("Patrick",1,true,false);
+    Client client1("Patrick",1,2);
     bank.insertClient(client1);
 
-    Client client2("Martha",2,true,true);
+    Client client2("Martha",2,3);
     bank.insertClient(client2);
 
-    Client client3("Fred",3,true,true);
+    Client client3("Fred",3,1);
     bank.insertClient(client3);
 
-    client1.credit_current(100);
-    client2.credit_current(1000);
-    client2.credit_savings(client2.debit_current(990));
+    client1.createAccount();
+    client1.createAccount();
+    client1.creditAccount(1000);
+    //client1.creditAccount(client1.debitAccount(900));
 
-    client2.credit_current(client1.debit_current(20));
-    client3.credit_current(client2.debit_current(50));
+    //client2.createAccount();
+    //client2.creditAccount(100);
+    //client1.creditAccount(client2.debitAccount(20));
 
     cout << bank << endl;
     return 0;

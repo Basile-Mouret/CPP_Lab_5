@@ -11,7 +11,7 @@ void Account::credit(double amount){
 }
 
 void Account::print(ostream &o) const{
-    o << "\nID : " << id << "\nBalance : " << balance;
+    o << "ID : " << id << "\nBalance : " << balance;
 }
 
 float Account::operator()(){
@@ -41,7 +41,7 @@ double CurrentAccount::debit(double amount){
 }
 
 void CurrentAccount::print(ostream &o)const{
-    o << "\nThis is the current account";
+    o << "** Current Account **\n";
     Account::print(o);
 }
 
@@ -55,7 +55,7 @@ double SavingsAccount::add_interrest(){
 }
 
 void SavingsAccount::print(ostream &o) const{
-    o << "\nThis is a savings account";
+    o << "** Savings Account **\n";
     Account::print(o);
 }
 
@@ -64,7 +64,7 @@ void SavingsAccount::print(ostream &o) const{
 BlockedSavingsAccount::BlockedSavingsAccount(unsigned int id):SavingsAccount(id, IRATEBLOCKED){}
 
 void BlockedSavingsAccount::print(ostream &o) const{
-    o << "\nThis is a blocked savings account";
+    o << "** Blocked Savings Account **\n";
     Account::print(o);
 }
 
@@ -83,6 +83,6 @@ double UnblockedSavingsAccount::debit(double amount){
 }
 
 void UnblockedSavingsAccount::print(ostream &o) const{
-    o << "\nThis is an unblocked savings account";
+    o << "** Unblocked Savings Account **\n";
     Account::print(o);
 }

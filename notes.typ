@@ -8,3 +8,6 @@ For the stream operator `<<` we will use the `print` methods that were already i
 We simply have to declare the method of the first parent class as virtual and use it in it's overloading of the `operator<<`.
 This way when this is called the programm will choose the `print` method corresponding to the correct class.
 
+== Client Update
+
+
