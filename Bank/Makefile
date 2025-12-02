@@ -28,4 +28,4 @@ obj/bank.o : src/bank.cpp include/bank.hpp include/client.hpp
 
 .PHONY: clean
 clean:
-	rm -rf obj out
+	rm -rf obj out *.txt

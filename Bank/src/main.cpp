@@ -1,8 +1,7 @@
-#include "account.hpp"
 #include "client.hpp"
 #include "bank.hpp"
 #include <iostream>
-
+#include <fstream>
 
 using namespace std;
 
@@ -30,6 +29,12 @@ int main(){
 
     client4.creditAccount(client1.debitAccount(100));
 
-    cout << bank << endl;
-    return 0;
+
+    ofstream myfile;
+    myfile.open("Bank.txt");
+    cout << "Writing the bank details in a file" << endl;
+    myfile << bank;
+    myfile.close();
+
+    return 1;
 }
