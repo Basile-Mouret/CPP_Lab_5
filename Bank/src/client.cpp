@@ -1,10 +1,12 @@
 #include "client.hpp"
 #include "account.hpp"
 
+unsigned int Client::next_id_counter = 1;
 
-Client::Client(string name, unsigned int id, int max_nb_account){
+Client::Client(string name, int max_nb_account){
     this->name = name;
-    this->id = id;
+    this->id = next_id_counter;
+    next_id_counter++;
     this->accounts = new Account *[max_nb_account];
     this->max_nb_account = max_nb_account;
     this->current_nb_account = 0;
@@ -13,7 +15,8 @@ Client::Client(string name, unsigned int id, int max_nb_account){
 
 Client::Client(const Client &client){
     this->name = client.name;
-    this->id = client.id;
+    this->id = next_id_counter;
+    next_id_counter++;
     this->max_nb_account = client.max_nb_account;
     this->accounts = new Account *[client.max_nb_account];
     for (int i=0; i<client.current_nb_account; i++) {
@@ -76,7 +79,7 @@ void Client::createAccount(){
       this->current_nb_account+=1;
     }
     else{
-      cout << "Invalid input, account creation abborted";
+      cout << "Invalid input, account creation cancelled" << endl;
     }
   }
 }
@@ -85,10 +88,9 @@ void Client::creditAccount(double amount){
   string choice;
   cout << "These are your accounts : \n";
   for (int i=0; i<this->current_nb_account; i++){
-    
-    cout << *(this->accounts[i]) << endl;
+    cout << " (" << i+1 << ") : " << *(this->accounts[i]) << endl;
   }
-  cout << "Which one do you want to credit?\naccount : ";
+  cout << "Which one do you want to credit?\naccount : " << endl;
   cin >> choice;
 
   if (stoi(choice)>0 && stoi(choice)<=this->current_nb_account){
@@ -103,7 +105,7 @@ double Client::debitAccount(double amount){
   string choice;
   cout << "These are your accounts : \n";
   for (int i=0; i<this->current_nb_account; i++){
-    cout << *(this->accounts[i]) << endl;
+    cout << " (" << i+1 << ") : " << *(this->accounts[i]) << endl;
   }
   cout << "Which one do you want to debit?\naccount : ";
   cin >> choice;
@@ -122,7 +124,7 @@ ostream& operator<<(ostream &o, const Client &client){
     o<< "\nclient name : " << client.name << "\nclient id : " << client.id << "\nAccounts : \n";
     for (int i=0; i<client.current_nb_account; i++){
       if (client.accounts[i]!=NULL){
-        o << *(client.accounts[i]) << "\n";
+        o << *(client.accounts[i]);
       }
     }
     return o;

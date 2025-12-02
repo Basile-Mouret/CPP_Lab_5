@@ -11,7 +11,7 @@ void Account::credit(double amount){
 }
 
 void Account::print(ostream &o) const{
-    o << "ID : " << id << "\nBalance : " << balance;
+    o << "ID : " << id << "\nBalance : " << balance << "\n";
 }
 
 float Account::operator()(){

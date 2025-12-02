@@ -15,6 +15,7 @@ class Account{
         double balance;
     public:
         Account(unsigned int id);
+
         void credit(double amount);
         virtual double debit(double amount)=0; // pure virtual method
         virtual void print(ostream &o) const;
